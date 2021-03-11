@@ -1,0 +1,2 @@
+E:\project2019\opengl\Debug\opengl.exe
+E:\project2019\opengl\Debug\opengl.pdb
