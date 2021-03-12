@@ -5,4 +5,4 @@
   vec3 diff = max(dot(n, -lightDir), 0.0)* texture(material.diffTex, texCoords).rgb * material.diffWeight ;
   vec3 spec = pow(max(dot(n,halfV), 0.0), material.shininess) * texture(material.specTex, texCoords).rgb*material.specWeight;
  ```
- 坑：在使用图片读取函数的时候，读取png文件出错，将文件转化为jpg文件才读取成功。
+ 坑：在使用图片读取函数stbi_load()的时候，读取png文件出错，将文件转化为jpg文件才读取成功。
