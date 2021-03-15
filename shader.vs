@@ -13,7 +13,7 @@ out vec2 texCoords;
 void main()
 {
     gl_Position = projection*view*transform*vec4(aPos, 1.0);
-	normal=aNormal;
+	normal=mat3(transpose(inverse(transform))) * aNormal;
 	worldPos=vec3(transform*vec4(aPos, 1.0));
 	texCoords=aTexCoords;
 }
