@@ -8,5 +8,8 @@
   texture(material.specTex, texCoords).rgb*material.specWeight;
  ```
  坑：在使用图片读取函数stbi_load()的时候，读取png文件出错，将文件转化为jpg文件才读取成功。
+ 
+ ## 投光物  -3.15
+  跟着教程来，只在插值的的时候直接使用smoothstep函数，感觉效果还行。
 
 
