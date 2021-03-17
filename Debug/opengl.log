@@ -1,22 +1,11 @@
 ﻿  源.cpp
 E:\project2019\opengl\shader.h(46,40): warning C4101: “e”: 未引用的局部变量
-<<<<<<< Updated upstream
-E:\project2019\opengl\源.cpp(134,25): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(202,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(203,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(207,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(208,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(209,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(210,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(216,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
-=======
 E:\project2019\opengl\源.cpp(158,25): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(227,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(228,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(232,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(233,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(234,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(235,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
-E:\project2019\opengl\源.cpp(241,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
->>>>>>> Stashed changes
+E:\project2019\opengl\源.cpp(229,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\project2019\opengl\源.cpp(230,17): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\project2019\opengl\源.cpp(234,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\project2019\opengl\源.cpp(235,19): warning C4244: “初始化”: 从“double”转换到“float”，可能丢失数据
+E:\project2019\opengl\源.cpp(236,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\project2019\opengl\源.cpp(237,13): warning C4244: “=”: 从“double”转换到“float”，可能丢失数据
+E:\project2019\opengl\源.cpp(243,33): warning C4244: “参数”: 从“double”转换到“float”，可能丢失数据
   opengl.vcxproj -> E:\project2019\opengl\Debug\opengl.exe
