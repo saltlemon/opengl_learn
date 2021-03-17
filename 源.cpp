@@ -2,7 +2,9 @@
 #include <GLFW/glfw3.h>
 #include"shader.h"
 #include"camera.h"
+#include"model.h"
 #include <iostream>
+#include <string>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include <glm/glm.hpp>
@@ -116,10 +118,24 @@ int main() {
     myshader.setVec3("lightColor", glm::vec3(1.0f, 1.0f, 1.0f));
     myshader.setVec3("lightPos", lightPos);
     
+<<<<<<< Updated upstream
 
     Shader lightShader("lightShader.vs", "lightShader.fs");
 
 
+=======
+    myshader.setFloat("material.shininess", 32.0f);
+    myshader.setFloat("material.ambWeight", 0.2f);
+    myshader.setFloat("material.diffWeight", 0.5f);
+    myshader.setFloat("material.specWeight", 1.0f);
+    
+
+    Model ourModel("model/nanosuit.obj");
+    unsigned int diffTex = loadTexture("diff.jpg");
+    glUniform1i(glGetUniformLocation(myshader.ID, "material.diffTex"), 0);
+    unsigned int specTex = loadTexture("spec.jpg");
+    glUniform1i(glGetUniformLocation(myshader.ID, "material.specTex"), 1);
+>>>>>>> Stashed changes
     glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(window))
@@ -152,18 +168,15 @@ int main() {
         myshader.setVec3("camPos", mycamera.pos);
 
         glBindVertexArray(VAO);
+<<<<<<< Updated upstream
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         lightShader.use();
+=======
+        
+>>>>>>> Stashed changes
 
-        lightShader.setMat4("view", view);
-        trans = glm::mat4(1.0f);
-        trans = glm::translate(trans, lightPos);
-        trans = glm::scale(trans, glm::vec3(0.2f));
-        lightShader.setMat4("transform", trans);
-        lightShader.setMat4("projection", projection);
-        glBindVertexArray(lightVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+        ourModel.Draw(myshader);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
