@@ -16,7 +16,11 @@ void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 const unsigned int SCR_WIDTH = 800;
 const unsigned int SCR_HEIGHT = 600;
 Camera mycamera;
+<<<<<<< Updated upstream
 glm::vec3 lightPos(1.2f, 2.0f, 2.0f);
+=======
+
+>>>>>>> Stashed changes
 
 bool firstMouse = true;
 float lastX = 800.0f / 2.0;
@@ -48,6 +52,7 @@ int main() {
     glfwSetScrollCallback(window, scroll_callback);
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
     float vertices[] = {
+<<<<<<< Updated upstream
     -0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
      0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
      0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,
@@ -90,6 +95,20 @@ int main() {
     -0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,
     -0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f
     };
+=======
+        // positions          // normals           // texture coords
+      -0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
+     0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
+    -0.05f, -0.05f,  0.0f, 0.0f, 1.0f,
+
+    -0.05f,  0.05f,  1.0f, 0.0f, 0.0f,
+     0.05f, -0.05f,  0.0f, 1.0f, 0.0f,
+     0.05f,  0.05f,  0.0f, 1.0f, 1.0f
+    };
+    
+    
+
+>>>>>>> Stashed changes
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
     unsigned int VBO;
@@ -97,11 +116,13 @@ int main() {
 
     glBindVertexArray(VAO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), &vertices, GL_STATIC_DRAW);
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(2 * sizeof(float)));
     glEnableVertexAttribArray(1);
+<<<<<<< Updated upstream
 
     unsigned int lightVAO;
     glGenVertexArrays(1, &lightVAO);
@@ -120,15 +141,84 @@ int main() {
     Shader lightShader("lightShader.vs", "lightShader.fs");
 
 
+=======
+    
+    
+
+    Model rock("model/rock.obj");
+    Shader lightShader("lightShader.vs", "lightShader.fs");
+    
+    lightShader.use();
+    
+    unsigned int amount = 10000;
+    glm::mat4* models;
+    models = new glm::mat4[amount];
+    srand(glfwGetTime());
+    float radius = 10.0;
+    float offset = 2.5f;
+    for (int i = 0; i < amount; i++) {
+        glm::mat4 model(1.0f);
+        float angle = (float)i / (float)amount * 360.0f;
+        float theoff = (rand() % (int)(2 * offset * 100)) / 100.0f-offset;
+        float x = sin(angle) * radius + theoff;
+        theoff = (rand() % (int)(2 * offset * 100)) / 100.0f - offset;
+        float y = theoff * 0.4f;
+        theoff = (rand() % (int)(2 * offset * 100)) / 100.0f - offset;
+        float z = cos(angle) * radius + theoff;
+        model = glm::translate(model, glm::vec3(x, y, z));
+
+        float scale = (rand() % 20) / 100.0f + 0.05;
+        model = glm::scale(model, glm::vec3(scale));
+
+        // 3. 旋转：绕着一个（半）随机选择的旋转轴向量进行随机的旋转
+        float rotAngle = (rand() % 360);
+        model = glm::rotate(model, rotAngle, glm::vec3(0.4f, 0.6f, 0.8f));
+
+        // 4. 添加到矩阵的数组中
+        models[i] = model;
+    }
+    unsigned int buffer;
+    glGenBuffers(1, &buffer);
+    glBindBuffer(GL_ARRAY_BUFFER, buffer);
+    glBufferData(GL_ARRAY_BUFFER, amount * sizeof(glm::mat4), &models[0], GL_STATIC_DRAW);
+
+    for (int i = 0; i < rock.meshes.size(); i++) {
+        unsigned int VAO = rock.meshes[i].VAO;
+        glBindVertexArray(VAO);
+        GLsizei vec4Size = sizeof(glm::vec4);
+        glEnableVertexAttribArray(3);
+        glVertexAttribPointer(3, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)0);
+        glEnableVertexAttribArray(4);
+        glVertexAttribPointer(4, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(vec4Size));
+        glEnableVertexAttribArray(5);
+        glVertexAttribPointer(5, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(2*vec4Size));
+        glEnableVertexAttribArray(6);
+        glVertexAttribPointer(6, 4, GL_FLOAT, GL_FALSE, 4 * vec4Size, (void*)(3*vec4Size));
+
+        glVertexAttribDivisor(3, 1);
+        glVertexAttribDivisor(4, 1);
+        glVertexAttribDivisor(5, 1);
+        glVertexAttribDivisor(6, 1);
+
+        glBindVertexArray(0);
+    }
+
+   
+>>>>>>> Stashed changes
     glEnable(GL_DEPTH_TEST);
 
     while (!glfwWindowShouldClose(window))
     {
+        float currentFrame = glfwGetTime();
+        deltaTime = currentFrame - lastFrame;
+        lastFrame = currentFrame;
+
         processInput(window);
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+<<<<<<< Updated upstream
    
         
         float timeValue = glfwGetTime();
@@ -171,6 +261,33 @@ int main() {
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
     myshader.Delete();
+=======
+        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+        lightShader.use();
+        glm::mat4 trans(1.0f);
+        
+        glm::mat4 view(1.0f);
+        view = mycamera.GetViewMatrix();
+        lightShader.setMat4("view", view);
+
+        glm::mat4 projection(1.0f);
+        projection = glm::perspective(glm::radians(mycamera.fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
+        lightShader.setMat4("projection", projection);
+
+        for (unsigned int i = 0; i < rock.meshes.size(); i++)
+        {
+            glBindVertexArray(rock.meshes[i].VAO);
+            glDrawElementsInstanced(
+                GL_TRIANGLES, rock.meshes[i].indices.size(), GL_UNSIGNED_INT, 0, amount
+            );
+        }
+        
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+>>>>>>> Stashed changes
     glfwTerminate();
     return 0;
 }
